@@ -1,0 +1,56 @@
+name: Iconica Standard Component CI Action
+
+# Workflow version: 2.0.0
+
+# https://docs.github.com/en/actions/using-workflows/reusing-workflows
+on:
+    workflow_call:
+      inputs:
+        subfolder:
+          type: string
+          description: 'Subfolder where the Flutter project is located'
+          required: false
+          default: '.'
+        additional_commands:
+          type: string
+          description: 'Additional commands to be run after flutter pub get'
+          required: false
+          default: ''
+        flutter_version:
+          description: "Optional Flutter Version"
+          required: false
+          type: string
+jobs:
+    lint:
+        defaults:
+          run:
+            working-directory: ${{ inputs.subfolder }}
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        steps:
+          - uses: actions/checkout@v4
+          - name: Flutter install specific version
+            if: inputs.flutter_version != ''
+            uses: subosito/flutter-action@v2
+            with:
+              channel: "stable"
+              cache: true
+              cache-key: ${{ runner.OS }}-flutter-install-cache
+              flutter-version: ${{ inputs.flutter_version }}
+          - name: Flutter install stable version
+            if: inputs.flutter_version == ''
+            uses: subosito/flutter-action@v2
+            with:
+              channel: "stable"
+              cache: true
+              cache-key: ${{ runner.OS }}-flutter-install-cache
+          - name: Run additional commands
+            if: inputs.additional_commands != ''
+            run: |
+                ${{ inputs.additional_commands }}
+          - name: Flutter pub get
+            run: flutter pub get
+          - name: Flutter format
+            run: dart format -o none --set-exit-if-changed .
+          - name: Flutter analyze
+            run: flutter analyze
