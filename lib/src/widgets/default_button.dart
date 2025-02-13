@@ -1,11 +1,11 @@
 import "package:flutter/material.dart";
 import "package:flutter_adaptive_drawer/src/service/adaptive_drawer_service.dart";
 
-/// A button that toggles the drawer. [DefaultButton] must be a 
+/// A button that toggles the drawer. [DefaultButton] must be a
 /// descendant of [AdaptiveDrawerService].
 /// [DefaultButton] is used by [AdaptiveDrawer] to toggle the drawer.
 /// Can be overridden by setting [AdaptiveDrawerConfig.buttonBuilder].
-/// Uses [AdaptiveDrawerConfig.defaultButtonCollapsedIcon] 
+/// Uses [AdaptiveDrawerConfig.defaultButtonCollapsedIcon]
 /// and [AdaptiveDrawerConfig.defaultButtonExpandedIcon].
 /// Uses [AdaptiveDrawerConfig.defaultButtonBackgroundColor]
 ///  and [AdaptiveDrawerConfig.defaultButtonIconColor].
