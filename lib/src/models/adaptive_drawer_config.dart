@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 /// Configuration for the [AdaptiveDrawer].
 class AdaptiveDrawerConfig {
   /// Creates a new [AdaptiveDrawerConfig].
-  AdaptiveDrawerConfig({
+  const AdaptiveDrawerConfig({
     this.expandedWidth = 400,
     this.collapsedWidth = 100,
     this.height,

@@ -3,7 +3,6 @@ import "package:flutter_adaptive_drawer/src/adaptive_drawer.dart";
 import "package:flutter_adaptive_drawer/src/models/adaptive_drawer_config.dart";
 import "package:flutter_adaptive_drawer/src/service/adaptive_drawer_service.dart";
 
-
 /// A wrapper scaffold to use with [AdaptiveDrawer].
 class AdaptiveDrawerScaffold extends StatefulWidget {
   /// Creates a new [AdaptiveDrawerScaffold].
@@ -49,7 +48,7 @@ class _AdaptiveDrawerScaffoldState extends State<AdaptiveDrawerScaffold>
   @override
   void initState() {
     super.initState();
-    config = widget.config ?? AdaptiveDrawerConfig();
+    config = widget.config ?? const AdaptiveDrawerConfig();
     _controller = AnimationController(
       duration: config.animationDuration,
       vsync: this,
